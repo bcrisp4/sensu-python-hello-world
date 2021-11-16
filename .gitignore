@@ -1,0 +1,4 @@
+*.sha512
+*.tar.gz
+.asset/
+*.swp

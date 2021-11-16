@@ -1,0 +1,23 @@
+---
+type: Asset
+api_version: core/v2
+metadata:
+  name: sensu-python-hello-world
+spec:
+  sha512: a4fffb79dfa2b0def341ee63d70ca924d73c1b0b6f8045acb2d6604d79d530df54a15e4ed03fab792160806181cac6579a6eba782df5366bafecb4533b48fd5e
+  url: https://sensu.int.bencrisp.co.uk/assets/sensu-python-hello-world.tar.gz
+---
+type: CheckConfig
+api_version: core/v2
+metadata:
+  name: python-hello-world
+spec:
+  # Set $PYTHONPATH to the "lib" dir in the asset directory on the agent
+  # https://docs.sensu.io/sensu-go/latest/plugins/assets/#token-substitution-for-dynamic-runtime-asset-paths
+  command: "PYTHONPATH=$SENSU_PYTHON_HELLO_WORLD_PATH/lib hello-world"
+  interval: 10
+  publish: true
+  runtime_assets:
+  - sensu-python-hello-world
+  subscriptions:
+  - linux
